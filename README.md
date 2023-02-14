@@ -2,4 +2,4 @@
 
 ## Description
 
-Removes all restrictions on skins
+Removes all restrictions on skin urls
