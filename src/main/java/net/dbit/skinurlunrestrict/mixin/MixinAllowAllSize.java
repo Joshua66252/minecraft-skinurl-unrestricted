@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@org.spongepowered.asm.mixin.Mixin(value = PlayerSkinTexture.class,remap = false)
+@org.spongepowered.asm.mixin.Mixin(value = PlayerSkinTexture.class)
 public class MixinAllowAllSize {
     private static void stripColor(NativeImage image, int x1, int y1, int x2, int y2) {
         int i;
