@@ -1,0 +1,23 @@
+body {
+	background-color: #345d9e;
+	color: #303030;
+	text-align: center;
+}
+#hNameLabel {
+	margin-left: -20.5px;
+}
+label,p1 {
+	font-size: 20px;
+	font-weight: bold;
+}
+input {
+	background-color: #2a4b80;
+	color: #303030;
+	font-weight: bold;
+}
+button {
+	background-color: #2a4b80;
+	color: #303030;
+	font-size: 20px;
+	font-weight: bold;
+}
