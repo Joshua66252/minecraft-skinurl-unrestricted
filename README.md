@@ -1,4 +1,4 @@
-# Skin unrestrictor
+# Skin unrestrictor (THIS IS A FABRIC MOD)
 
 ## Description
 
