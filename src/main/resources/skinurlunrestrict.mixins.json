@@ -6,7 +6,8 @@
   "mixins": [
   ],
   "client": [
-    "Mixin"
+    "MixinAllowAllDomains",
+    "MixinAllowAllSize"
   ],
   "injectors": {
     "defaultRequire": 1
