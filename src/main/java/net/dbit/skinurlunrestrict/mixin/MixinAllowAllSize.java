@@ -62,13 +62,13 @@ public class MixinAllowAllSize {
             nativeImage.copyRect(52, 20, -8, 32, 4, 12, true, false);
         }
 
-        stripAlpha(image, 0, 0, 32, 16);
+        //stripAlpha(image, 0, 0, 32, 16);
         if (bl) {
             stripColor(image, 32, 0, 64, 32);
         }
 
-        stripAlpha(image, 0, 16, 64, 32);
-        stripAlpha(image, 16, 48, 48, 64);
+        //stripAlpha(image, 0, 16, 64, 32);
+        //stripAlpha(image, 16, 48, 48, 64);
         info.setReturnValue(image);
     }
 }
