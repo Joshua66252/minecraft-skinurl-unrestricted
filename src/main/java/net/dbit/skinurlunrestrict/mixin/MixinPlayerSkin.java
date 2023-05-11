@@ -3,6 +3,7 @@ package net.dbit.skinurlunrestrict.mixin;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -24,8 +25,8 @@ import java.util.UUID;
 @org.spongepowered.asm.mixin.Mixin(value = AbstractClientPlayerEntity.class)
 public abstract class MixinPlayerSkin extends PlayerEntity {
 
-    public MixinPlayerSkin(World world, BlockPos pos, float yaw, GameProfile gameProfile, @Nullable PlayerPublicKey publicKey) {
-        super(world, pos, yaw, gameProfile, publicKey);
+    public MixinPlayerSkin(ClientWorld world, GameProfile profile) {
+        super(world, world.getSpawnPos(), world.getSpawnAngle(), profile);
     }
 
     @Inject(method="getSkinTexture",at=@At("HEAD"), cancellable = true)
