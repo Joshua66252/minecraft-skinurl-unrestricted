@@ -3,7 +3,6 @@ package net.dbit.skinurlunrestrict.mixin;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
-import net.minecraft.client.util.SkinTextures;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,7 +10,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtHelper;
+import net.minecraft.network.encryption.PlayerPublicKey;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -25,8 +29,8 @@ public abstract class MixinPlayerSkin extends PlayerEntity {
         super(world, world.getSpawnPos(), world.getSpawnAngle(), profile);
     }
 
-    @Inject(method="getSkinTextures",at=@At("HEAD"), cancellable = true)
-    private void textureInject(CallbackInfoReturnable<SkinTextures> info){
+    @Inject(method="getSkinTexture",at=@At("HEAD"), cancellable = true)
+    private void textureInject(CallbackInfoReturnable<Identifier> info){
         ItemStack headItem = this.getEquippedStack(EquipmentSlot.HEAD);
         if(headItem.getItem().equals(Items.PLAYER_HEAD) && headItem.getNbt() != null){
             if(headItem.getNbt().asString().contains("fullbody")){
@@ -39,7 +43,7 @@ public abstract class MixinPlayerSkin extends PlayerEntity {
                 }
                 if(gameProfile != null) {
                     MinecraftClient minecraftClient = MinecraftClient.getInstance();
-                    info.setReturnValue(minecraftClient.getSkinProvider().getSkinTextures(gameProfile));
+                    info.setReturnValue(minecraftClient.getSkinProvider().loadSkin(gameProfile));
                 }
             }
         }
